@@ -1,17 +1,15 @@
 ---
-import Button from "../components/ui/Button/Button.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from '../components/ui/Button/Button.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 
-import UiImage from "@/components/ui/Image/Image.astro";
-import Text from "@/components/ui/Text/Text.astro";
-import Heading from "@/components/ui/Heading/Heading.astro";
-import Container from "@/components/layout/Container/Container.astro";
+import UiImage from '@/components/ui/Image/Image.astro'
+import Text from '@/components/ui/Text/Text.astro'
+import Heading from '@/components/ui/Heading/Heading.astro'
+import Container from '@/components/layout/Container/Container.astro'
+import Header from '@/components/layout/Header/Header.astro'
 ---
 
-<BaseLayout
-	title="Minha Landing Page"
-	description="Landing page focada em conversão e SEO"
->
+<BaseLayout title="Minha Landing Page" description="Landing page focada em conversão e SEO">
 	<!-- Conteúdo virá aqui -->
 	<!-- <Button variant="secondary" size="lg"> Saber mais </Button> -->
 	<!-- <UiImage
@@ -98,4 +96,5 @@ import Container from "@/components/layout/Container/Container.astro";
 	<!-- <Container as="section">
 		<Heading level="h2">Seção</Heading>
 	</Container> -->
+	<Header sticky="smart" />
 </BaseLayout>

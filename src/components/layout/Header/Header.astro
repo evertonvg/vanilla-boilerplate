@@ -1,0 +1,71 @@
+---
+import Button from '@/components/ui/Button/Button.astro'
+import UiImage from '@/components/ui/Image/Image.astro'
+
+export interface Props {
+  sticky?: 'static' | 'fixed' | 'smart'
+}
+
+const { sticky = 'static' } = Astro.props
+---
+
+<header
+  class={['header', `header--sticky-${sticky}`].join(' ')}
+  x-data="header()"
+  x-init="init()"
+  @keydown.escape="close()"
+>
+  <div class="header__inner container container--lg">
+    <!-- Logo -->
+    <div class="header__logo">
+      <a href="/" aria-label="Página inicial">
+        <UiImage fallbackSrc="/logo.svg" alt="Nome da Empresa" width={120} height={40} />
+      </a>
+    </div>
+
+    <!-- Desktop Nav -->
+    <nav class="header__nav" aria-label="Menu principal">
+      <ul class="header__menu">
+        <li><a href="#features" class="header__link">Recursos</a></li>
+        <li><a href="#pricing" class="header__link">Preços</a></li>
+        <li><a href="#about" class="header__link">Sobre</a></li>
+        <li><a href="#contact" class="header__link">Contato</a></li>
+
+        <!-- CTA (desktop only) -->
+        <li class="header__cta header__cta--desktop">
+          <Button variant="primary" size="sm" href="#signup"> Começar agora </Button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Toggle -->
+    <button
+      class="header__toggle"
+      :class="{ 'is-active': open }"
+      @click="toggle()"
+      aria-label="Abrir menu"
+      :aria-expanded="open.toString()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div class="header__mobile" :class="{ 'is-open': open }">
+    <nav aria-label="Menu mobile">
+      <ul class="header__mobile-menu">
+        <li><a class="header__mobile-menu__item" @click="close()" href="#features">Recursos</a></li>
+        <li><a class="header__mobile-menu__item" @click="close()" href="#pricing">Preços</a></li>
+        <li><a class="header__mobile-menu__item" @click="close()" href="#about">Sobre</a></li>
+        <li><a class="header__mobile-menu__item" @click="close()" href="#contact">Contato</a></li>
+
+        <!-- CTA (mobile last) -->
+        <li class="header__cta header__cta--mobile">
+          <Button variant="primary" size="sm" href="#signup"> Começar agora </Button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
