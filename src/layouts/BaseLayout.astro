@@ -1,0 +1,32 @@
+---
+const { title = "Landing Page", description = "" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>{title}</title>
+        <meta name="description" content={description} />
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Global Styles -->
+        <link rel="stylesheet" href="/src/styles/main.scss" />
+    </head>
+
+    <body>
+        <slot />
+
+        <!-- Global JS -->
+        <script type="module" src="/src/scripts/main.js"></script>
+    </body>
+</html>

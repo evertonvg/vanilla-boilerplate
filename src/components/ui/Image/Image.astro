@@ -1,0 +1,100 @@
+---
+export interface ImageSource {
+    srcset: string;
+    media?: string;
+    type?: string;
+    sizes?: string;
+}
+
+interface Props {
+    alt: string;
+    fallbackSrc: string;
+    width?: number;
+    height?: number;
+    loading?: "lazy" | "eager";
+    decoding?: "async" | "sync" | "auto";
+    sources?: ImageSource[];
+    caption?: string;
+    class?: string;
+}
+
+const {
+    alt,
+    fallbackSrc,
+    width,
+    height,
+    loading = "lazy",
+    decoding = "async",
+    sources = [],
+    caption,
+    class: className = "",
+} = Astro.props;
+---
+
+{
+    caption ? (
+        <figure class={`ui-image ${className}`}>
+            <picture>
+                {sources.map((source) => (
+                    <source
+                        srcset={source.srcset}
+                        media={source.media}
+                        type={source.type}
+                        sizes={source.sizes}
+                    />
+                ))}
+
+                <img
+                    src={fallbackSrc}
+                    alt={alt}
+                    width={width}
+                    height={height}
+                    loading={loading}
+                    decoding={decoding}
+                />
+            </picture>
+
+            <figcaption>{caption}</figcaption>
+        </figure>
+    ) : (
+        <picture class={`ui-image ${className}`}>
+            {sources.map((source) => (
+                <source
+                    srcset={source.srcset}
+                    media={source.media}
+                    type={source.type}
+                    sizes={source.sizes}
+                />
+            ))}
+
+            <img
+                src={fallbackSrc}
+                alt={alt}
+                width={width}
+                height={height}
+                loading={loading}
+                decoding={decoding}
+            />
+        </picture>
+    )
+}
+
+<style lang="scss">
+    .ui-image {
+        display: block;
+        max-width: 100%;
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        figcaption {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: #666;
+            text-align: center;
+        }
+    }
+</style>

@@ -1,0 +1,63 @@
+@use '../../../styles/base/tokens/' as *;
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: $container-padding-mobile;
+
+  /* Default max-width (lg) */
+  max-width: $container-lg;
+
+  /* Desktop padding */
+  @media (min-width: 768px) {
+    padding-inline: $container-padding-desktop;
+  }
+
+  /* =========================
+     Size variants
+     ========================= */
+
+  &--sm {
+    max-width: $container-sm;
+  }
+
+  &--md {
+    max-width: $container-md;
+  }
+
+  &--lg {
+    max-width: $container-lg;
+  }
+
+  &--xl {
+    max-width: $container-xl;
+  }
+
+  &--xxl {
+    max-width: $container-xxl;
+  }
+
+  /* =========================
+     Fluid (full width)
+     ========================= */
+
+  &--fluid {
+    max-width: none;
+  }
+
+  /* =========================
+     Narrow (content/text)
+     ========================= */
+
+  &--narrow {
+    max-width: $container-md;
+  }
+
+  /* =========================
+     Wide (large layouts)
+     ========================= */
+
+  &--wide {
+    max-width: $container-xxl;
+  }
+}

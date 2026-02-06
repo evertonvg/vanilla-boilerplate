@@ -1,0 +1,101 @@
+---
+import Button from "../components/ui/Button/Button.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import UiImage from "@/components/ui/Image/Image.astro";
+import Text from "@/components/ui/Text/Text.astro";
+import Heading from "@/components/ui/Heading/Heading.astro";
+import Container from "@/components/layout/Container/Container.astro";
+---
+
+<BaseLayout
+	title="Minha Landing Page"
+	description="Landing page focada em conversão e SEO"
+>
+	<!-- Conteúdo virá aqui -->
+	<!-- <Button variant="secondary" size="lg"> Saber mais </Button> -->
+	<!-- <UiImage
+		alt="Exemplo responsivo"
+		fallbackSrc="https://dummyimage.com/1200x800/000/fff"
+		width={1200}
+		height={800}
+		caption="Imagem adaptada por breakpoint"
+		sources={[
+			{
+				media: "(max-width: 480px)",
+				srcset: "https://dummyimage.com/480x320/333/fff",
+				sizes: "480px",
+			},
+			{
+				media: "(max-width: 768px)",
+				srcset: "https://dummyimage.com/768x512/555/fff",
+				sizes: "768px",
+			},
+			{
+				media: "(max-width: 1024px)",
+				srcset: "https://dummyimage.com/1024x683/777/fff",
+				sizes: "1024px",
+			},
+			{
+				media: "(max-width: 1440px)",
+				srcset: "https://dummyimage.com/1440x800/000/fff",
+				sizes: "1440px",
+			},
+			{
+				media: "(min-width: 1441px)",
+				srcset: "https://dummyimage.com/1441x800/000/fff",
+				sizes: "1440px",
+			},
+		]}
+	/> -->
+	<!-- <Text> Texto padrão </Text>
+
+	<Text size="sm" color="muted"> Texto auxiliar </Text>
+
+	<Text as="span" weight="bold"> Inline bold </Text>
+
+	<Text as="label" size="sm" weight="medium"> Email </Text>
+
+	<Text size="lg" color="primary" highlight> Destaque </Text> -->
+
+	<!-- <Heading level="h1">Heading H1</Heading>
+	<Heading level="h2">Heading H2</Heading>
+	<Heading level="h3">Heading H3</Heading>
+	<Heading level="h4">Heading H4</Heading>
+	<Heading level="h5">Heading H5</Heading>
+	<Heading level="h6">Heading H6</Heading>
+	<Heading color="default">Default color</Heading>
+	<Heading color="primary">Primary color</Heading>
+	<Heading color="secondary">Secondary color</Heading>
+	<Heading color="muted">Muted color</Heading>
+	<Heading align="left">Left aligned</Heading>
+	<Heading align="center">Center aligned</Heading>
+	<Heading align="right">Right aligned</Heading>
+	<Heading weight="regular">Regular weight</Heading>
+	<Heading weight="medium">Medium weight</Heading>
+	<Heading weight="bold">Bold weight</Heading>
+	<Heading level="h1" color="primary" align="center" weight="bold">
+		Plandora
+	</Heading> -->
+
+	<!-- Default (landing) -->
+	<!-- <Container>
+		<Heading level="h1">Hero Section</Heading>
+	</Container> -->
+
+	<!-- Narrow (texto) -->
+	<!-- <Container size="narrow">
+		<Text> Este é um texto longo para leitura confortável. </Text>
+	</Container> -->
+
+	<!-- Fluid (full width) -->
+	<!-- <Container size="fluid" /> -->
+
+	<!-- Wide -->
+	<!-- <Container size="wide" /> -->
+
+	<!-- Mudando tag semântica -->
+	<!-- <Container as="section">
+		<Heading level="h2">Seção</Heading>
+	</Container> -->
+</BaseLayout>

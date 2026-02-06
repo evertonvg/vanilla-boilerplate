@@ -1,0 +1,14 @@
+---
+export interface Props {
+    size?: "sm" | "md" | "lg" | "xl" | "xxl" | "fluid" | "narrow" | "wide";
+    as?: keyof HTMLElementTagNameMap;
+}
+
+const { size = "lg", as = "div" } = Astro.props;
+
+const Tag = as;
+---
+
+<Tag class={["container", size ? `container--${size}` : ""].join(" ")}>
+    <slot />
+</Tag>

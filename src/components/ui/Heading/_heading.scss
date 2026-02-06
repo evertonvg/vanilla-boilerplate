@@ -1,0 +1,79 @@
+@use '../../../styles/base/tokens/' as *;
+
+.heading {
+  margin: 0;
+  font-family: $font-base;
+  line-height: 1.2;
+
+  /* Default text color */
+  color: $color-text-base;
+
+  /* Focus (acessibilidade) */
+  &:focus-visible {
+    outline: 2px solid $color-focus;
+    outline-offset: 2px;
+  }
+
+  /* =========================
+     LEVEL / SIZE
+     ========================= */
+
+  &--h1 { font-size: 2.25rem; }
+  &--h2 { font-size: 1.875rem; }
+  &--h3 { font-size: 1.5rem; }
+  &--h4 { font-size: 1.25rem; }
+  &--h5 { font-size: 1.125rem; }
+  &--h6 { font-size: 1rem; }
+
+  /* =========================
+     FONT WEIGHT
+     ========================= */
+
+  &--weight-regular {
+    font-weight: $font-weight-regular;
+  }
+
+  &--weight-medium {
+    font-weight: $font-weight-medium;
+  }
+
+  &--weight-bold {
+    font-weight: $font-weight-bold;
+  }
+
+  /* =========================
+     TEXT ALIGN
+     ========================= */
+
+  &--align-left {
+    text-align: left;
+  }
+
+  &--align-center {
+    text-align: center;
+  }
+
+  &--align-right {
+    text-align: right;
+  }
+
+  /* =========================
+     COLOR (SEMANTIC)
+     ========================= */
+
+  &--color-default {
+    color: $color-text-base;
+  }
+
+  &--color-primary {
+    color: $color-primary-600;
+  }
+
+  &--color-secondary {
+    color: $color-secondary-600;
+  }
+
+  &--color-muted {
+    color: $color-text-muted;
+  }
+}

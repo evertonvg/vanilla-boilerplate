@@ -1,0 +1,134 @@
+/* =========================
+   Base
+   ========================= */
+
+$color-white: #ffffff;
+$color-black: #000000;
+
+
+/* =========================
+   Neutral / Gray Scale
+   ========================= */
+
+$color-neutral-50:  #f9fafb;
+$color-neutral-100: #f3f4f6;
+$color-neutral-200: #e5e7eb;
+$color-neutral-300: #d1d5db;
+$color-neutral-400: #9ca3af;
+$color-neutral-500: #6b7280;
+$color-neutral-600: #4b5563;
+$color-neutral-700: #374151;
+$color-neutral-800: #1f2933;
+$color-neutral-900: #111827;
+
+
+/* =========================
+   Brand / Primary
+   ========================= */
+
+$color-primary-50:  #eff6ff;
+$color-primary-100: #dbeafe;
+
+$color-primary-500: #3b82f6;
+$color-primary-600: #2563eb;   // Default
+$color-primary-700: #1d4ed8;   // Hover
+$color-primary-800: #1e40af;   // Active
+
+$color-on-primary: $color-white;
+
+
+/* =========================
+   Secondary
+   ========================= */
+
+$color-secondary-600: #0f766e; // Default
+$color-secondary-700: #115e59; // Hover
+$color-secondary-800: #134e4a; // Active
+
+$color-on-secondary: $color-white;
+
+
+/* =========================
+   Success
+   ========================= */
+
+$color-success-600: #16a34a;
+$color-success-700: #15803d;
+$color-success-800: #166534;
+
+$color-on-success: $color-white;
+
+
+/* =========================
+   Warning
+   ========================= */
+
+$color-warning-500: #f59e0b;
+$color-warning-600: #d97706;
+$color-warning-700: #b45309;
+
+$color-on-warning: #1c1917;
+
+
+/* =========================
+   Danger / Error
+   ========================= */
+$color-danger-500: #ef4444;
+$color-danger-600: #dc2626;
+$color-danger-700: #b91c1c;
+$color-danger-800: #991b1b;
+
+$color-on-danger: $color-white;
+
+
+/* =========================
+   Info
+   ========================= */
+
+$color-info-600: #2563eb;
+
+
+/* =========================
+   Text (Semantic)
+   ========================= */
+
+$color-text-base:   $color-neutral-900;
+$color-text-secondary: $color-neutral-600;
+$color-text-muted:  $color-neutral-500;
+$color-text-inverse: $color-white;
+
+
+/* =========================
+   Backgrounds (Semantic)
+   ========================= */
+
+$color-bg-page:     $color-white;
+$color-bg-surface:  $color-neutral-50;
+$color-bg-elevated: $color-white;
+$color-bg-overlay:  rgba(17, 24, 39, 0.6);
+
+
+/* =========================
+   Borders
+   ========================= */
+
+$color-border-default: $color-neutral-200;
+$color-border-strong:  $color-neutral-300;
+$color-border-inverse: rgba(255, 255, 255, 0.2);
+
+
+/* =========================
+   Focus / Accessibility
+   ========================= */
+
+$color-focus:      $color-primary-600;
+$color-focus-ring: rgba(37, 99, 235, 0.35);
+
+
+/* =========================
+   Links
+   ========================= */
+
+$color-link:         $color-primary-600;
+$color-link-hover:   $color-primary-700;
+$color-link-visited: #7c3aed; // Violet 600

@@ -1,0 +1,55 @@
+---
+const {
+    href,
+    target,
+    rel,
+    type = "button",
+    variant = "primary",
+    size = "md",
+    full = false,
+    disabled = false,
+    id,
+    class: extraClass = "",
+    ariaLabel,
+    attrs = "",
+} = Astro.props;
+
+const classes = [
+    "btn",
+    `btn--${variant}`,
+    `btn--${size}`,
+    full && "btn--full",
+    disabled && "btn--disabled",
+    extraClass,
+]
+    .filter(Boolean)
+    .join(" ");
+---
+
+{
+    href ? (
+        <a
+            id={id}
+            href={disabled ? undefined : href}
+            target={target}
+            rel={rel}
+            class={classes}
+            aria-disabled={disabled ? "true" : undefined}
+            aria-label={ariaLabel}
+            tabindex={disabled ? "-1" : undefined}
+            {...(attrs && { dangerouslySetInnerHTML: undefined })}
+        >
+            <slot />
+        </a>
+    ) : (
+        <button
+            id={id}
+            type={type}
+            class={classes}
+            disabled={disabled}
+            aria-label={ariaLabel}
+        >
+            <slot />
+        </button>
+    )
+}

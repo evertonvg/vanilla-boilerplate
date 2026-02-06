@@ -1,0 +1,29 @@
+---
+export interface Props {
+    level?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    color?: "default" | "primary" | "secondary" | "muted";
+    align?: "left" | "center" | "right";
+    weight?: "regular" | "medium" | "bold";
+}
+
+const {
+    level = "h2",
+    color = "default",
+    align = "left",
+    weight = "bold",
+} = Astro.props;
+
+const Tag = level;
+---
+
+<Tag
+    class={[
+        "heading",
+        `heading--${level}`,
+        `heading--color-${color}`,
+        `heading--align-${align}`,
+        `heading--weight-${weight}`,
+    ].join(" ")}
+>
+    <slot />
+</Tag>
