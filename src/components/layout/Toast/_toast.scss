@@ -1,0 +1,95 @@
+@use '@/styles/base/tokens' as *;
+
+.toast-container {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+
+  /* Desktop */
+  bottom: 16px;
+  right: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+.toast {
+  pointer-events: auto;
+  background: $color-secondary;
+  color: $color-text;
+  border-left: 4px solid $color-primary;
+  border-radius: 6px;
+  padding: 12px 14px;
+  min-width: 280px;
+  max-width: 360px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+
+  /* Mobile full width feel */
+  @media (max-width: 640px) {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  &__message {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  &__close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: $color-text;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  /* =========================
+     TYPES
+     ========================= */
+
+  &--success {
+    border-color: $color-primary;
+  }
+
+  &--error {
+    border-color: $color-primary-hover;
+  }
+
+  &--warning {
+    border-color: $color-primary-hover;
+  }
+
+  &--info {
+    border-color: $color-primary;
+  }
+}

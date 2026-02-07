@@ -92,13 +92,13 @@
 
   /* Primary */
   &--primary {
-    background-color: $color-primary-600;
-    color: $color-on-primary;
-    border-color: $color-primary-600;
+    background-color: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
 
     &:hover {
-      background-color: $color-primary-700;
-      border-color: $color-primary-700;
+      background-color: $color-primary-hover;
+      border-color: $color-primary-hover;
     }
 
     &:active {
@@ -109,18 +109,18 @@
 
   /* Secondary */
   &--secondary {
-    background-color: $color-secondary-600;
-    color: $color-on-secondary;
-    border-color: $color-secondary-600;
+    background-color: $color-secondary;
+    color: $color-primary;
+    border-color: $color-primary;
 
     &:hover {
-      background-color: $color-secondary-700;
-      border-color: $color-secondary-700;
+      background-color: $color-secondary-hover;
+      border-color: $color-primary;
     }
 
     &:active {
-      background-color: $color-secondary-800;
-      border-color: $color-secondary-800;
+      background-color: $color-secondary;
+      border-color: $color-secondary-hover;
     }
   }
 

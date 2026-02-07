@@ -1,0 +1,42 @@
+---
+export interface Props {
+  policyUrl?: string
+}
+
+const { policyUrl = '/privacy' } = Astro.props
+---
+
+<div
+  class="cookie-consent"
+  x-data="cookieConsent()"
+  x-show="visible"
+  x-transition
+  role="dialog"
+  aria-live="polite"
+  aria-label="Aviso de cookies"
+>
+  <div class="cookie-consent__content">
+    <p class="cookie-consent__text">
+      Utilizamos cookies para melhorar sua experiência. Ao continuar navegando,
+      você concorda com o uso de cookies conforme nossa
+      <a href={policyUrl} class="cookie-consent__link">Política de Privacidade</a>.
+    </p>
+
+    <div class="cookie-consent__actions">
+      <button
+        class="cookie-consent__btn cookie-consent__btn--secondary"
+        @click="reject()"
+      >
+        Recusar
+      </button>
+
+      <button
+        class="cookie-consent__btn cookie-consent__btn--primary"
+        @click="accept()"
+        autofocus
+      >
+        Aceitar
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+---
+import UiImage from '@/components/ui/Image/Image.astro'
+import Text from '@/components/ui/Text/Text.astro'
+import Heading from '@/components/ui/Heading/Heading.astro'
+
+const year = new Date().getFullYear()
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__top container container--lg">
+    <!-- Brand -->
+    <div class="footer__brand">
+      <a href="/" aria-label="Página inicial">
+        <UiImage
+          fallbackSrc="/logo.svg"
+          alt="Nome da Empresa"
+          width={120}
+          height={40}
+        />
+      </a>
+
+      <Text variant="muted" size="sm" class="footer__description">
+        Construindo experiências digitais modernas, rápidas e acessíveis.
+      </Text>
+    </div>
+
+    <!-- Nav Columns -->
+    <div class="footer__nav">
+      <div class="footer__column">
+        <Heading level="h6">Produto</Heading>
+        <ul>
+          <li><a href="#features">Recursos</a></li>
+          <li><a href="#pricing">Preços</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__column">
+        <Heading level="h6">Empresa</Heading>
+        <ul>
+          <li><a href="/about">Sobre</a></li>
+          <li><a href="/careers">Carreiras</a></li>
+          <li><a href="/contact">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__column">
+        <Heading level="h6">Legal</Heading>
+        <ul>
+          <li><a href="/privacy">Privacidade</a></li>
+          <li><a href="/terms">Termos de uso</a></li>
+          <li><a href="/cookies">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer__bottom">
+    <div class="container container--lg footer__bottom-inner">
+      <Text size="sm" variant="muted">
+        © {year} Nome da Empresa. Todos os direitos reservados.
+      </Text>
+
+      <ul class="footer__social" aria-label="Redes sociais">
+        <li><a href="#" aria-label="Twitter">Twitter</a></li>
+        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+        <li><a href="#" aria-label="GitHub">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>

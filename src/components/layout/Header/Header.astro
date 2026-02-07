@@ -1,12 +1,28 @@
 ---
 import Button from '@/components/ui/Button/Button.astro'
 import UiImage from '@/components/ui/Image/Image.astro'
+import { getCollection } from 'astro:content'
 
 export interface Props {
   sticky?: 'static' | 'fixed' | 'smart'
 }
 
 const { sticky = 'static' } = Astro.props
+
+// Load menu from Content Collection
+const menuItems = (await getCollection('menu'))
+  .map((item) => item.data)
+  .sort((a, b) => a.order - b.order)
+
+const desktopItems = menuItems.filter(
+  (item) => item.showOnDesktop && !item.isCTA
+)
+
+const mobileItems = menuItems.filter(
+  (item) => item.showOnMobile && !item.isCTA
+)
+
+const ctaItem = menuItems.find((item) => item.isCTA)
 ---
 
 <header
@@ -19,22 +35,58 @@ const { sticky = 'static' } = Astro.props
     <!-- Logo -->
     <div class="header__logo">
       <a href="/" aria-label="Página inicial">
-        <UiImage fallbackSrc="/logo.svg" alt="Nome da Empresa" width={120} height={40} />
+        <UiImage
+          fallbackSrc="/logo.svg"
+          alt="Nome da Empresa"
+          width={120}
+          height={40}
+        />
       </a>
     </div>
 
     <!-- Desktop Nav -->
     <nav class="header__nav" aria-label="Menu principal">
       <ul class="header__menu">
-        <li><a href="#features" class="header__link">Recursos</a></li>
-        <li><a href="#pricing" class="header__link">Preços</a></li>
-        <li><a href="#about" class="header__link">Sobre</a></li>
-        <li><a href="#contact" class="header__link">Contato</a></li>
+        {desktopItems.map((item) => {
+          const isAnchor = item.href?.startsWith('#')
+
+          return (
+            <li>
+              <a
+                href={item.href}
+                class="header__link"
+                target={item.target}
+                rel={item.rel}
+                {...(isAnchor
+                  ? { '@click.prevent': `scrollToAnchor('${item.href}')` }
+                  : {})}
+              >
+                {item.label}
+              </a>
+            </li>
+          )
+        })}
 
         <!-- CTA (desktop only) -->
-        <li class="header__cta header__cta--desktop">
-          <Button variant="primary" size="sm" href="#signup"> Começar agora </Button>
-        </li>
+       {ctaItem && (() => {
+          const isAnchor = ctaItem.href?.startsWith('#')
+
+          return (
+            <li class="header__cta header__cta--desktop">
+              <Button
+                variant="secondary"
+                size="sm"
+                href={ctaItem.href}
+                target={ctaItem.target}
+                {...(isAnchor
+                  ? { '@click.prevent': `scrollToAnchor('${ctaItem.href}')` }
+                  : {})}
+              >
+                {ctaItem.label}
+              </Button>
+            </li>
+          )
+        })()}
       </ul>
     </nav>
 
@@ -56,15 +108,46 @@ const { sticky = 'static' } = Astro.props
   <div class="header__mobile" :class="{ 'is-open': open }">
     <nav aria-label="Menu mobile">
       <ul class="header__mobile-menu">
-        <li><a class="header__mobile-menu__item" @click="close()" href="#features">Recursos</a></li>
-        <li><a class="header__mobile-menu__item" @click="close()" href="#pricing">Preços</a></li>
-        <li><a class="header__mobile-menu__item" @click="close()" href="#about">Sobre</a></li>
-        <li><a class="header__mobile-menu__item" @click="close()" href="#contact">Contato</a></li>
+        {mobileItems.map((item) => {
+          const isAnchor = item.href?.startsWith('#')
+
+          return (
+            <li>
+              <a
+                class="header__mobile-menu__item"
+                href={item.href}
+                target={item.target}
+                rel={item.rel}
+                {...(isAnchor
+                  ? { '@click.prevent': `scrollToAnchor('${item.href}')` }
+                  : { '@click': 'close()' })}
+              >
+                {item.label}
+              </a>
+            </li>
+          )
+        })}
 
         <!-- CTA (mobile last) -->
-        <li class="header__cta header__cta--mobile">
-          <Button variant="primary" size="sm" href="#signup"> Começar agora </Button>
-        </li>
+        {ctaItem && (() => {
+          const isAnchor = ctaItem.href?.startsWith('#')
+
+          return (
+            <li class="header__cta header__cta--mobile">
+              <Button
+                variant="primary"
+                size="sm"
+                href={ctaItem.href}
+                target={ctaItem.target}
+                {...(isAnchor
+                  ? { '@click.prevent': `scrollToAnchor('${ctaItem.href}')` }
+                  : { '@click': 'close()' })}
+              >
+                {ctaItem.label}
+              </Button>
+            </li>
+          )
+        })()}
       </ul>
     </nav>
   </div>

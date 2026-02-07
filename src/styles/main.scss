@@ -16,3 +16,6 @@
 @use '../components/ui/Heading/heading';
 @use '../components/layout/Container/container';
 @use '../components/layout/header/header';
+@use '../components/layout/footer/footer';
+@use '../components/layout/CookieConsent/_cookie-consent';
+@use '../components/layout/Toast/_toast';
