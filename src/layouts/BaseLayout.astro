@@ -3,6 +3,7 @@ import CookieConsent from "@/components/layout/CookieConsent/CookieConsent.astro
 import Footer from "@/components/layout/Footer/Footer.astro";
 import Header from "@/components/layout/Header/Header.astro";
 import Toast from "@/components/layout/Toast/Toast.astro";
+import WhatsappFloat from "@/components/layout/WhatsappFloat/WhatsappFloat.astro";
 
 const { title = "Landing Page", description = "" } = Astro.props;
 ---
@@ -32,13 +33,9 @@ const { title = "Landing Page", description = "" } = Astro.props;
         <Header sticky="static" />
         <slot />
         <Footer />
-        <button
-  
->
-  Testar Toast
-</button>
-<Toast/>
+        <Toast />
         <CookieConsent policyUrl="/privacy" />
+        <WhatsappFloat phone="5551999999999" side="right" />
 
 
         <!-- Global JS -->

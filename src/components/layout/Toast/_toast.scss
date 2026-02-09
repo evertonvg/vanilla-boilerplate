@@ -1,95 +1,94 @@
+@use 'sass:color';
 @use '@/styles/base/tokens' as *;
 
-.toast-container {
+.toast {
   position: fixed;
+  bottom: 1rem;
+  right: 1rem;
   z-index: 9999;
   pointer-events: none;
 
-  /* Desktop */
-  bottom: 16px;
-  right: 16px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  /* Mobile */
-  @media (max-width: 640px) {
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-  }
-}
-
-.toast {
-  pointer-events: auto;
-  background: $color-secondary;
-  color: $color-text;
-  border-left: 4px solid $color-primary;
-  border-radius: 6px;
-  padding: 12px 14px;
-  min-width: 280px;
-  max-width: 360px;
-
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-
-  /* Mobile full width feel */
-  @media (max-width: 640px) {
-    max-width: 100%;
-    width: 100%;
+  &--show {
+    pointer-events: auto;
   }
 
   &__content {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
+    background: $color-secondary;
+    color: $color-text;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    min-width: 280px;
+    max-width: 360px;
 
-  &__title {
-    font-weight: 600;
-    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+    // Barra lateral por tipo
+    border-left: 4px solid $color-primary;
   }
 
   &__message {
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     line-height: 1.4;
+    flex: 1;
   }
 
   &__close {
     background: transparent;
-    border: none;
+    border: 0;
+    color: $color-text;
     cursor: pointer;
     font-size: 1rem;
-    color: $color-text;
-    opacity: 0.6;
+    padding: 0.25rem;
+    line-height: 1;
+
+    transition: color 0.15s ease;
 
     &:hover {
-      opacity: 1;
+      color: color.adjust($color-primary, $lightness: -5%);
     }
   }
 
-  /* =========================
-     TYPES
-     ========================= */
+  // ===== MODIFICADORES DE TIPO =====
 
   &--success {
-    border-color: $color-primary;
+    .toast__content {
+      border-left-color: $color-primary;
+    }
   }
 
   &--error {
-    border-color: $color-primary-hover;
-  }
-
-  &--warning {
-    border-color: $color-primary-hover;
+    .toast__content {
+      border-left-color: color.adjust($color-primary, $lightness: -12%);
+    }
   }
 
   &--info {
-    border-color: $color-primary;
+    .toast__content {
+      border-left-color: color.adjust($color-text, $lightness: -20%);
+    }
+  }
+
+  // ===== ANIMAÇÃO (reforça o x-transition) =====
+
+  &[x-cloak] {
+    display: none !important;
+  }
+
+  // ===== MOBILE FULL WIDTH =====
+
+  @media (max-width: 640px) {
+    left: 1rem;
+    right: 1rem;
+    bottom: 0.75rem;
+
+    &__content {
+      width: 100%;
+      max-width: none;
+    }
   }
 }

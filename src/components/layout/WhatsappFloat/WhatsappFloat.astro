@@ -1,0 +1,26 @@
+---
+export interface Props {
+  phone: string;          // Ex: 5551999999999
+  side?: 'left' | 'right' // default: right
+}
+
+const {
+  phone,
+  side = 'right'
+} = Astro.props
+
+const whatsappUrl = `https://wa.me/${phone}`
+---
+
+<a
+  href={whatsappUrl}
+  class={`whatsapp-float whatsapp-float--${side}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Falar no WhatsApp"
+>
+  <span
+    class="iconify whatsapp-float__icon"
+    data-icon="ph:whatsapp-logo-fill"
+  ></span>
+</a>

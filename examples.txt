@@ -83,3 +83,11 @@
 	<!-- <Container as="section">
 		<Heading level="h2">Seção</Heading>
 	</Container> -->
+
+	<button
+  x-data
+  class="btn"
+  @click="$store.toast.open('Salvo com sucesso!', 'success')"
+>
+  Salvar
+</button>

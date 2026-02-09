@@ -1,0 +1,61 @@
+@use 'sass:color';
+@use '@/styles/base/tokens' as *;
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 1.25rem;
+  z-index: 9999;
+
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+
+  background: #25d366; // cor oficial WhatsApp
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+
+  text-decoration: none;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  &__icon {
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  // ===== POSIÇÃO =====
+
+  &--right {
+    right: 1.25rem;
+  }
+
+  &--left {
+    left: 1.25rem;
+  }
+
+  // ===== MOBILE =====
+
+  @media (max-width: 640px) {
+    bottom: 1rem;
+
+    &--right {
+      right: 1rem;
+    }
+
+    &--left {
+      left: 1rem;
+    }
+  }
+}

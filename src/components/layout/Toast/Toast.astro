@@ -1,29 +1,25 @@
 <div
-  x-data="toast()"
-  x-init="init()"
-  class="toast-container"
+  class="toast"
+  x-data
+  :class="{
+    'toast--show': $store.toast.show,
+    'toast--success': $store.toast.type === 'success',
+    'toast--error': $store.toast.type === 'error',
+    'toast--info': $store.toast.type === 'info'
+  }"
+  x-show="$store.toast.show"
+  x-transition
+  x-cloak
 >
-  <template x-for="item in items" :key="item.id">
-    <div
-      class="toast"
-      :class="`toast--${item.type}`"
-      x-show="item.visible"
-      x-transition
-      role="status"
-      aria-live="polite"
-    >
-      <div class="toast__content">
-        <strong class="toast__title" x-text="item.title"></strong>
-        <p class="toast__message" x-text="item.message"></p>
-      </div>
+  <div class="toast__content">
+    <span class="toast__message" x-text="$store.toast.message"></span>
 
-      <button
-        class="toast__close"
-        @click="remove(item.id)"
-        aria-label="Fechar notificação"
-      >
-        ✕
-      </button>
-    </div>
-  </template>
+    <button
+      class="toast__close"
+      @click="$store.toast.close()"
+       aria-label="Fechar"
+    >
+      ✕
+    </button>
+  </div>
 </div>
