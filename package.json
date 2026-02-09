@@ -14,7 +14,9 @@
   "dependencies": {
     "@iconify/iconify": "^3.1.1",
     "alpinejs": "^3.15.8",
-    "astro": "^5.17.1"
+    "astro": "^5.17.1",
+    "lite-youtube-embed": "^0.3.4",
+    "swiper": "^12.1.0"
   },
   "devDependencies": {
     "@types/alpinejs": "^3.13.11",

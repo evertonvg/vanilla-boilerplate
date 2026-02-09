@@ -62,18 +62,18 @@
      ========================= */
 
   &--color-default {
-    color: $color-text-base;
+    color: $color-white;
   }
 
   &--color-primary {
-    color: $color-primary-600;
+    color: $color-text;
   }
 
   &--color-secondary {
-    color: $color-secondary-600;
+    color: $color-primary;
   }
 
   &--color-muted {
-    color: $color-text-muted;
+    color: $color-black;
   }
 }

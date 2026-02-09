@@ -14,4 +14,46 @@ export const collections = {
       isCTA: z.boolean().default(false),
     }),
   }),
+
+  hero: defineCollection({
+    type: 'data',
+    schema: z.object({
+      title: z.string().optional(),
+      description: z.string().optional(),
+      align: z.enum(['left', 'right']).default('left'),
+
+      height: z.object({
+        mobile: z.number().optional(),   // vh
+        tablet: z.number().optional(),   // vh
+        desktop: z.number().optional(),  // vh
+      }),
+
+      image: z.object({
+        alt: z.string(),
+
+        fallbackSrc: z.string(),
+
+        sources: z.array(
+          z.object({
+            srcset: z.string(),
+            media: z.string().optional(),
+            type: z.string().optional(),
+            sizes: z.string().optional(),
+          })
+        ),
+      }),
+
+      buttons: z
+        .array(
+          z.object({
+            label: z.string(),
+            href: z.string(),
+            variant: z.string().optional(),
+          })
+        )
+        .optional(),
+
+      order: z.number().default(0),
+    }),
+  }),
 }

@@ -6,6 +6,8 @@
 
 /* Components */
 @use './components/buttons';
+// @use './components/swiper';
+
 
 /* Utilities */
 @use './utilities/helpers';
@@ -20,3 +22,4 @@
 @use '../components/layout/CookieConsent/_cookie-consent';
 @use '../components/layout/Toast/_toast';
 @use '../components/layout/WhatsappFloat/_whatsappfloat';
+@use '../components/layout/HeroCarousel/_herocarousel';

@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content'
+
+import Image from '@/components/ui/Image/Image.astro'
+import Container from '@/components/layout/Container/Container.astro'
+import Heading from '@/components/ui/Heading/Heading.astro'
+import Text from '@/components/ui/Text/Text.astro'
+import Button from '@/components/ui/Button/Button.astro'
+
+const heroes = (await getCollection('hero'))
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+
+const hasMultiple = heroes.length > 1
+
+const { heightMobile = 100, heightTablet = 60, heightDesktop = 85 } = Astro.props;
+
+---
+
+{heroes.length > 0 && (
+  <section class="hero-carousel" x-data="heroCarousel" x-init="init()">
+    <div class={`swiper hero-swiper ${!hasMultiple ? 'hero-swiper--single' : ''}`}>
+      <div class="swiper-wrapper">
+
+        {heroes.map((hero, index) => (
+          <div class="swiper-slide">
+            <section
+              class={`hero hero--align-${hero.data.align}`}
+              style={`
+                    --carousel-height-mobile: ${heightMobile}vh;
+                    --carousel-height-tablet: ${heightTablet}vh;
+                    --carousel-height-desktop: ${heightDesktop}vh;
+                  `}
+            >
+              <div class="hero-media">
+                <Image
+                  alt={hero.data.image.alt}
+                  fallbackSrc={hero.data.image.fallbackSrc}
+                  sources={hero.data.image.sources}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  class="hero-image"
+                />
+              </div>
+
+              <Container size="lg">
+                <div class="hero-content">
+                  {hero.data.title && (
+                    <Heading level="h1">
+                      {hero.data.title}
+                    </Heading>
+                  )}
+
+                  {hero.data.description && (
+                    <Text size="lg" class="hero-description">
+                      {hero.data.description}
+                    </Text>
+                  )}
+
+                  {hero.data.buttons && (
+                    <div class="hero-actions">
+                      {hero.data.buttons.map((btn) => (
+                        <Button
+                          href={btn.href}
+                          variant={btn.variant || 'primary'}
+                        >
+                          {btn.label}
+                        </Button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </Container>
+            </section>
+          </div>
+        ))}
+
+      </div>
+
+      {/* Arrows */}
+      {hasMultiple && (
+        <>
+          <button class="custom-prev" aria-label="Anterior">
+            <span class="iconify" data-icon="mdi:chevron-left" style="font-size: 32px; color: #b30000;"></span>
+          </button>
+          <button class="custom-next" aria-label="Próximo">
+            <span class="iconify" data-icon="mdi:chevron-right" style="font-size: 32px; color: #b30000;"></span>
+          </button>
+        </>
+      )}
+
+      {/* Dots */}
+      {hasMultiple && <div class="swiper-pagination"></div>}
+    </div>
+  </section>
+)}
+
+

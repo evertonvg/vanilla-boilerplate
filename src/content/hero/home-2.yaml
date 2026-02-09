@@ -1,0 +1,25 @@
+title: "Centralize seus projetos"
+description: "Tenha controle total do seu fluxo de trabalho."
+
+align: right
+
+height:
+  mobile: 65
+  tablet: 55
+  desktop: 75
+
+image:
+  alt: "Hero secundário"
+  fallbackSrc: "https://dummyimage.com/1920x900/7c2d12/ffffff&text=Hero+2+Desktop"
+
+  sources:
+    - srcset: "https://dummyimage.com/640x800/9a3412/ffffff&text=Hero+2+Mobile"
+      media: "(max-width: 640px)"
+
+    - srcset: "https://dummyimage.com/1024x768/c2410c/ffffff&text=Hero+2+Tablet"
+      media: "(max-width: 1024px)"
+
+buttons:
+  - label: "Ver funcionalidades"
+    href: "/features"
+    variant: "secondary"

@@ -1,0 +1,271 @@
+@use '@/styles/base/tokens' as *;
+.hero {
+  position: relative;
+  overflow: hidden;
+
+ height: var(--carousel-height-mobile, 70vh);
+
+  @media (min-width: 640px) {
+    height: var(--carousel-height-tablet, 60vh);
+  }
+
+  @media (min-width: 1024px) {
+    height: var(--carousel-height-desktop, 85vh);
+  }
+
+  display: flex;
+  align-items: center;
+
+  &--height-sm {
+    min-height: 40vh;
+  }
+
+  &--height-md {
+    min-height: 55vh;
+  }
+
+  &--height-lg {
+    min-height: 70vh;
+  }
+
+  &--height-xl {
+    min-height: 85vh;
+  }
+
+  &--height-full {
+    min-height: 100vh;
+  }
+
+  min-height: var(--hero-height-mobile);
+
+  @media (min-width: 641px) {
+    min-height: var(--hero-height-tablet);
+  }
+
+  @media (min-width: 1025px) {
+    min-height: var(--hero-height-desktop);
+  }
+
+  &-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.35) 0%,     // escuro leve no topo
+        rgba(0, 0, 0, 0.45) 50%,    // overlay padrão
+        rgba(0, 0, 0, 0.75) 100%    // sombra forte embaixo
+      );
+      pointer-events: none;           // 🔑 não bloqueia cliques
+    }
+  }
+
+  &-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+    img {
+      object-fit: cover;
+      height: 100%!important;
+    }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &-content {
+    max-width: 600px;
+    padding: 6rem 0;
+  }
+
+  &-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &--align-right {
+    .hero-content {
+      margin-left: auto;
+      text-align: right;
+    }
+  }
+
+
+  // carousel styles
+  .hero-swiper--single {
+    .swiper-button-prev,
+    .swiper-button-next,
+    .swiper-pagination {
+      display: none;
+    }
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: #fff;
+  }
+
+  .swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+}
+
+/* Dots personalizados */
+.swiper-pagination {
+  display: flex !important;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+.swiper-pagination-bullet {
+  width: 30px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  opacity: 0.7;
+  transition: background-color 0.3s, opacity 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #b30000; /* sua cor primaria */
+  opacity: 1;
+}
+
+
+.swiper-pagination {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  margin-top: 1rem !important;
+}
+
+.swiper-pagination-bullet {
+  width: 30px !important;
+  height: 4px !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 2px !important;
+  opacity: 0.7 !important;
+  transition: background-color 0.3s, opacity 0.3s !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #b30000 !important;
+  opacity: 1 !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background: transparent !important;
+  border: none !important;
+  color: #b30000 !important;
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.swiper-button-prev {
+  left: 16px !important;
+}
+
+.swiper-button-next {
+  right: 16px !important;
+}
+
+/* Botões customizados das setas */
+.custom-prev,
+.custom-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b30000; /* cor primária */
+
+  width: 40px;  /* ajuste se quiser */
+  height: 40px; /* ajuste se quiser */
+  padding: 0;
+}
+
+/* Posicionamento */
+.custom-prev {
+  left: 10px;
+}
+
+.custom-next {
+  right: 10px;
+}
+
+/* Esconder no mobile */
+@media (max-width: 639px) {
+  .custom-prev,
+  .custom-next {
+    display: none;
+  }
+}
+
+.swiper-pagination-bullet {
+  position: relative;
+  width: 30px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.swiper-pagination-bullet::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background-color: #b30000; /* cor primária */
+  transition: width linear;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.swiper-pagination-bullet-active::before {
+  width: 100%;
+  transition-duration: 5000ms; /* duração do autoplay */
+}
+
+.custom-prev,
+.custom-next {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+/* Efeito hover */
+.custom-prev:hover,
+.custom-next:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(179, 0, 0, 0.7);
+  color: #ff0000; /* opcional: pode clarear a cor da seta */
+}

@@ -29,11 +29,11 @@
   &--bold    { font-weight: $font-weight-bold; }
 
   /* Colors */
-  &--base    { color: $color-text-base; }
+  &--base    { color: $color-white; }
   &--muted   { color: $color-text-muted; }
   &--inverse { color: $color-text-inverse; }
-  &--primary { color: $color-primary-600; }
-  &--danger  { color: $color-danger-500; }
+  &--primary { color: $color-text; }
+  &--danger  { color: $color-primary; }
 
   /* Align */
   &--align-left   { text-align: left; }

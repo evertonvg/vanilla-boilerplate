@@ -1,0 +1,24 @@
+title: "Aumente sua produtividade"
+description: "Automatize tarefas e foque no que realmente importa."
+
+align: left
+
+height:
+  mobile: 75
+  tablet: 65
+  desktop: 90
+
+image:
+  alt: "Hero produtividade"
+  fallbackSrc: "https://dummyimage.com/1920x900/064e3b/ffffff&text=Hero+3+Desktop"
+
+  sources:
+    - srcset: "https://dummyimage.com/640x800/065f46/ffffff&text=Hero+3+Mobile"
+      media: "(max-width: 640px)"
+
+    - srcset: "https://dummyimage.com/1024x768/047857/ffffff&text=Hero+3+Tablet"
+      media: "(max-width: 1024px)"
+
+buttons:
+  - label: "Fale com vendas"
+    href: "/contact"

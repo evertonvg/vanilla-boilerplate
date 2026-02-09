@@ -1,0 +1,24 @@
+title: "Bem-vindo ao Plandora"
+description: "Organize seus projetos de forma simples e eficiente."
+
+align: left
+
+height:
+  mobile: 70
+  tablet: 60
+  desktop: 85
+
+image:
+  alt: "Hero principal"
+  fallbackSrc: "https://dummyimage.com/1920x900/0f172a/ffffff&text=Hero+1+Desktop"
+
+  sources:
+    - srcset: "https://dummyimage.com/640x800/1e293b/ffffff&text=Hero+1+Mobile"
+      media: "(max-width: 640px)"
+
+    - srcset: "https://dummyimage.com/1024x768/334155/ffffff&text=Hero+1+Tablet"
+      media: "(max-width: 1024px)"
+
+buttons:
+  - label: "Começar agora"
+    href: "/register"
