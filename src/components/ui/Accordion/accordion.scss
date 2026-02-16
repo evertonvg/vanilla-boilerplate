@@ -1,0 +1,50 @@
+.accordion {
+  max-width: 800px;
+  margin: 0 auto;
+
+  &-item {
+    border-bottom: 1px solid #ddd;
+  }
+
+  &-header {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  &-icon {
+    transition: transform 0.3s ease;
+  }
+
+  
+
+  .is-open &-icon {
+    transform: rotate(45deg);
+  }
+
+  &-content {
+    overflow: hidden;
+  }
+
+  &-body {
+    padding-bottom: 1.5rem;
+
+    ul,
+    ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+  }
+}
+

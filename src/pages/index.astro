@@ -1,9 +1,42 @@
 ---
+import { getCollection } from 'astro:content'
+
 import HeroCarousel from '@/components/layout/HeroCarousel/HeroCarousel.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import Accordion from '@/components/ui/Accordion/Accordion.astro'
+import Grid from '@/components/layout/Grid/Grid.astro'
+import Card from '@/components/ui/Card/Card.astro'
+import Container from '@/components/layout/Container/Container.astro'
+import Section from '@/components/layout/Section/Section.astro'
+
+const cards = await getCollection('cards')
+
+const sortedCards = cards.sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+)
 ---
 
-<BaseLayout title="Minha Landing Page" description="Landing page focada em conversão e SEO">
-	<!-- Conteúdo virá aqui -->	
-	 <HeroCarousel />
+<BaseLayout
+  title="Minha Landing Page"
+  description="Landing page focada em conversão e SEO"
+>
+  <HeroCarousel />
+
+  
+  <Section size="xl">
+	  <Container size="xl">
+		  <Grid>
+			  {sortedCards.map((card) => (
+				  <Card
+				  title={card.data.title}
+				  description={card.body}
+				  image={card.data.image}
+				  clickable={card.data.clickable}
+				  href={card.data.href}
+				  />
+				))}
+		</Grid>
+	</Container>
+</Section>
+<Accordion />
 </BaseLayout>

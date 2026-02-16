@@ -1,0 +1,55 @@
+.section {
+  width: 100%;
+
+  /* Padding vertical responsivo */
+  &--sm {
+    padding: 2rem 0;
+
+    @media (min-width: 768px) {
+      padding: 3rem 0;
+    }
+  }
+
+  &--md {
+    padding: 3rem 0;
+
+    @media (min-width: 768px) {
+      padding: 4rem 0;
+    }
+  }
+
+  &--lg {
+    padding: 4rem 0;
+
+    @media (min-width: 768px) {
+      padding: 6rem 0;
+    }
+  }
+
+  &--xl {
+    padding: 6rem 0;
+
+    @media (min-width: 768px) {
+      padding: 8rem 0;
+    }
+  }
+
+  /* Backgrounds */
+  &--bg-default {
+    background: #fff;
+  }
+
+  &--bg-muted {
+    background: #f5f5f5;
+  }
+
+  &--bg-primary {
+    background: #b30000;
+    color: #fff;
+  }
+
+  &--bg-dark {
+    background: #232323;
+    color: #fff;
+  }
+}

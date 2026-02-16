@@ -1,6 +1,13 @@
 import { defineCollection, z } from 'astro:content'
 
 export const collections = {
+  faq: defineCollection({
+    type: 'content',
+    schema: z.object({
+      question: z.string(),
+      order: z.number().optional(),
+    }),
+  }),
   menu: defineCollection({
     type: 'data',
     schema: z.object({
@@ -56,4 +63,17 @@ export const collections = {
       order: z.number().default(0),
     }),
   }),
+  cards: defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    image: z.object({
+      alt: z.string(),
+      fallbackSrc: z.string(),
+    }),
+    href: z.string().optional(),
+    clickable: z.boolean().default(false),
+    order: z.number().default(0),
+  }),
+}),
 }

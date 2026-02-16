@@ -1,0 +1,31 @@
+---
+export interface Props {
+  as?: keyof HTMLElementTagNameMap
+  size?: "sm" | "md" | "lg" | "xl"
+  background?: "default" | "muted" | "primary" | "dark"
+  id?: string
+  class?: string
+}
+
+const {
+  as = "section",
+  size = "lg",
+  background = "default",
+  id,
+  class: className = "",
+} = Astro.props
+
+const Tag = as
+---
+
+<Tag
+  id={id}
+  class={[
+    "section",
+    `section--${size}`,
+    `section--bg-${background}`,
+    className
+  ].join(" ")}
+>
+  <slot />
+</Tag>

@@ -1,0 +1,53 @@
+---
+export interface Props {
+  image: {
+    alt: string
+    fallbackSrc: string
+    sources?: any[]
+  }
+  title: string
+  description: string
+  href?: string
+  clickable?: boolean
+}
+
+import Image from '@/components/ui/Image/Image.astro'
+import Button from '../Button/Button.astro'
+
+const {
+  image,
+  title,
+  description,
+  href,
+  clickable = false,
+} = Astro.props
+
+// Limita descrição a 50 caracteres
+const limitedDescription =
+  description.length > 50
+    ? description.slice(0, 50).trim() + '...'
+    : description
+
+const Wrapper = clickable && href ? 'a' : 'div'
+---
+
+<Wrapper
+  href={clickable ? href : undefined}
+  class={`card ${clickable ? 'card--clickable' : ''}`}
+>
+  <div class="card-image">
+    <Image
+      alt={image.alt}
+      fallbackSrc={image.fallbackSrc}
+      sources={image.sources}
+      coverage='cover'
+    />
+  </div>
+
+  <div class="card-content">
+    <h3 class="card-title">{title}</h3>
+    <p class="card-description">{limitedDescription}</p>
+    <Button>Saiba Mais</Button>
+  </div>
+</Wrapper>
+

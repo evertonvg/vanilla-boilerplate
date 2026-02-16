@@ -16,6 +16,7 @@ interface Props {
     sources?: ImageSource[];
     caption?: string;
     class?: string;
+    coverage?: "cover" | "contain";
 }
 
 const {
@@ -27,6 +28,7 @@ const {
     decoding = "async",
     sources = [],
     caption,
+    coverage,
     class: className = "",
 } = Astro.props;
 ---
@@ -34,7 +36,7 @@ const {
 {
     caption ? (
         <figure class={`ui-image ${className}`}>
-            <picture>
+            <picture >
                 {sources.map((source) => (
                     <source
                         srcset={source.srcset}
@@ -57,7 +59,7 @@ const {
             <figcaption>{caption}</figcaption>
         </figure>
     ) : (
-        <picture class={`ui-image ${className}`}>
+        <picture class={`ui-image ${coverage} ${className}`}>
             {sources.map((source) => (
                 <source
                     srcset={source.srcset}
@@ -74,6 +76,7 @@ const {
                 height={height}
                 loading={loading}
                 decoding={decoding}
+                class={coverage}
             />
         </picture>
     )
@@ -83,11 +86,32 @@ const {
     .ui-image {
         display: block;
         max-width: 100%;
+        &.cover{
+            height: 100%;
+        }
+
+        &.contain{
+            height: 100%;
+        }
+
+        picture {
+            width: 100%;
+        }
 
         img {
             width: 100%;
             height: auto;
             display: block;
+
+            &.cover{
+                object-fit: cover;
+                height: 100%;
+            }
+
+            &.contain{
+                object-fit: contain;
+                height: 100%;
+            }
         }
 
         figcaption {

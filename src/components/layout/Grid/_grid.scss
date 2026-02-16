@@ -1,0 +1,22 @@
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+
+  /* Mobile */
+  grid-template-columns: 1fr;
+
+  /* Tablet */
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Notebook */
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Full HD */
+  @media (min-width: 1440px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

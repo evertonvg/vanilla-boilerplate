@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content'
+
+const faqs = await getCollection('faq')
+
+const sorted = faqs
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+---
+
+<section class="accordion" x-data>
+  {sorted.map(async (item) => {
+    const { Content } = await item.render()
+
+    return (
+      <div
+        class="accordion-item"
+        x-data="{ open: false }"
+        :class="{ 'is-open': open }"
+      >
+        <button
+          class="accordion-header"
+          @click="open = !open"
+          :aria-expanded="open"
+        >
+          <span>{item.data.question}</span>
+          <span class="accordion-icon">+</span>
+        </button>
+
+        <div
+          class="accordion-content"
+          x-show="open"
+          x-collapse
+        >
+          <div class="accordion-body">
+            <Content />
+          </div>
+        </div>
+      </div>
+    )
+  })}
+</section>
