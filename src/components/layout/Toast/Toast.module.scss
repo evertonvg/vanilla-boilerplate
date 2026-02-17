@@ -27,7 +27,6 @@
 
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 
-    // Barra lateral por tipo
     border-left: 4px solid $color-primary;
   }
 
@@ -53,33 +52,27 @@
     }
   }
 
-  // ===== MODIFICADORES DE TIPO =====
+  /* ===== MODIFICADORES ===== */
 
-  &--success {
-    .toast__content {
-      border-left-color: $color-primary;
-    }
+  &--success &__content {
+    border-left-color: $color-primary;
   }
 
-  &--error {
-    .toast__content {
-      border-left-color: color.adjust($color-primary, $lightness: -12%);
-    }
+  &--error &__content {
+    border-left-color: color.adjust($color-primary, $lightness: -12%);
   }
 
-  &--info {
-    .toast__content {
-      border-left-color: color.adjust($color-text, $lightness: -20%);
-    }
+  &--info &__content {
+    border-left-color: color.adjust($color-text, $lightness: -20%);
   }
 
-  // ===== ANIMAÇÃO (reforça o x-transition) =====
+  /* ===== Alpine cloak ===== */
 
   &[x-cloak] {
     display: none !important;
   }
 
-  // ===== MOBILE FULL WIDTH =====
+  /* ===== Mobile full width ===== */
 
   @media (max-width: 640px) {
     left: 1rem;

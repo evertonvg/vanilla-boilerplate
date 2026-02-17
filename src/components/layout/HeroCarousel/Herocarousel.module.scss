@@ -1,0 +1,178 @@
+@use '@/styles/base/tokens' as *;
+
+/* =====================================================
+   HERO BASE
+===================================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  height: var(--carousel-height-mobile, 70vh);
+
+  @media (min-width: 640px) {
+    height: var(--carousel-height-tablet, 60vh);
+  }
+
+  @media (min-width: 1024px) {
+    height: var(--carousel-height-desktop, 85vh);
+  }
+}
+
+.heroMedia {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.45) 50%,
+      rgba(0, 0, 0, 0.75) 100%
+    );
+    pointer-events: none;
+  }
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  img {
+    object-fit: cover;
+    height: 100% !important;
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  padding: 6rem 0;
+}
+
+.heroActions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* =====================================================
+   ALIGN
+===================================================== */
+
+.heroAlignRight {
+  .heroContent {
+    margin-left: auto;
+    text-align: right;
+  }
+}
+
+/* =====================================================
+   SWIPER SINGLE MODE
+===================================================== */
+
+.heroSwiperSingle {
+  :global(.swiper-button-prev),
+  :global(.swiper-button-next),
+  :global(.swiper-pagination) {
+    display: none;
+  }
+}
+
+/* =====================================================
+   PAGINATION (GLOBAL SWIPER)
+===================================================== */
+
+:global(.swiper-pagination) {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  margin-top: 1rem !important;
+}
+
+:global(.swiper-pagination-bullet) {
+  position: relative;
+  width: 30px !important;
+  height: 4px !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 1 !important;
+}
+
+:global(.swiper-pagination-bullet::before) {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 0;
+  background-color: #b30000;
+  transition: width linear;
+  border-radius: 2px;
+}
+
+:global(.swiper-pagination-bullet-active::before) {
+  width: 100%;
+  transition-duration: 6000ms; /* igual ao delay do autoplay */
+}
+
+/* =====================================================
+   CUSTOM ARROWS
+===================================================== */
+
+.customPrev,
+.customNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #b30000;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+
+  transition: transform 0.3s ease,
+              box-shadow 0.3s ease,
+              color 0.3s ease;
+}
+
+.customPrev {
+  left: 16px;
+}
+
+.customNext {
+  right: 16px;
+}
+
+/* Hover effect */
+.customPrev:hover,
+.customNext:hover {
+  transform: translateY(-50%) scale(1.2);
+  box-shadow: 0 0 10px rgba(179, 0, 0, 0.7);
+  color: #ff0000;
+}
+
+/* Hide arrows on mobile */
+@media (max-width: 639px) {
+  .customPrev,
+  .customNext {
+    display: none;
+  }
+}

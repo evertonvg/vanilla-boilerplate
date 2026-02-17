@@ -1,55 +1,70 @@
 ---
-const {
-    href,
-    target,
-    rel,
-    type = "button",
-    variant = "primary",
-    size = "md",
-    full = false,
-    disabled = false,
-    id,
-    class: extraClass = "",
-    ariaLabel,
-    attrs = "",
-} = Astro.props;
+import styles from './Button.module.scss'
 
-const classes = [
-    "btn",
-    `btn--${variant}`,
-    `btn--${size}`,
-    full && "btn--full",
-    disabled && "btn--disabled",
-    extraClass,
+interface Props {
+  href?: string
+  target?: string
+  rel?: string
+  type?: "button" | "submit" | "reset"
+  variant?: "primary" | "secondary" | "ghost"
+  size?: "sm" | "md" | "lg"
+  full?: boolean
+  disabled?: boolean
+  id?: string
+  class?: string
+  ariaLabel?: string
+}
+
+const {
+  href,
+  target,
+  rel,
+  type = "button",
+  variant = "primary",
+  size = "md",
+  full = false,
+  disabled = false,
+  id,
+  class: extraClass = "",
+  ariaLabel,
+  ...rest
+} = Astro.props as Props
+
+const classList = [
+  styles.btn,
+  styles[`btn--${variant}`],
+  styles[`btn--${size}`],
+  full && styles["btn--full"],
+  disabled && styles["btn--disabled"],
+  extraClass
 ]
-    .filter(Boolean)
-    .join(" ");
+  .filter(Boolean)
+  .join(" ")
 ---
 
 {
-    href ? (
-        <a
-            id={id}
-            href={disabled ? undefined : href}
-            target={target}
-            rel={rel}
-            class={classes}
-            aria-disabled={disabled ? "true" : undefined}
-            aria-label={ariaLabel}
-            tabindex={disabled ? "-1" : undefined}
-            {...(attrs && { dangerouslySetInnerHTML: undefined })}
-        >
-            <slot />
-        </a>
-    ) : (
-        <button
-            id={id}
-            type={type}
-            class={classes}
-            disabled={disabled}
-            aria-label={ariaLabel}
-        >
-            <slot />
-        </button>
-    )
+  href ? (
+    <a
+      id={id}
+      href={href}
+      target={target}
+      rel={rel}
+      aria-label={ariaLabel}
+      class={classList}
+      {...rest}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      id={id}
+      type={type}
+      disabled={disabled}
+      aria-label={ariaLabel}
+      class={classList}
+      {...rest}
+    >
+      <slot />
+    </button>
+  )
 }

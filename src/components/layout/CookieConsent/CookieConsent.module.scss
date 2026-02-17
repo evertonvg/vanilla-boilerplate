@@ -1,6 +1,6 @@
 @use '@/styles/base/tokens' as *;
 
-.cookie-consent {
+.cookieConsent {
   position: fixed;
   bottom: 16px;
   left: 16px;
@@ -84,13 +84,13 @@
 }
 
 @media (min-width: 640px) {
-  .cookie-consent__content {
+  .cookieConsent__content {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
 
-  .cookie-consent__text {
+  .cookieConsent__text {
     max-width: 70%;
   }
 }

@@ -1,12 +1,16 @@
-<div
-  class="toast"
-   x-data="{
+---
+import styles from './Toast.module.scss'
+---
+
+<div 
+  class={styles.toast}
+  x-data="{
     get classes() {
       return {
-        'toast--show': $store.toast.show,
-        'toast--success': $store.toast.type === 'success',
-        'toast--error': $store.toast.type === 'error',
-        'toast--info': $store.toast.type === 'info'
+        [styles['toast--show']]: $store.toast.show,
+        [styles['toast--success']]: $store.toast.type === 'success',
+        [styles['toast--error']]: $store.toast.type === 'error',
+        [styles['toast--info']]: $store.toast.type === 'info'
       }
     }
   }"
@@ -15,14 +19,14 @@
   x-transition.opacity
   x-cloak
 >
-  <div class="toast__content">
+  <div class={styles['toast__content']}>
     <span
-      class="toast__message"
+      class={styles['toast__message']}
       x-text="$store.toast?.message"
     ></span>
 
     <button
-      class="toast__close"
+      class={styles['toast__close']}
       @click="$store.toast?.close()"
       aria-label="Fechar"
     >

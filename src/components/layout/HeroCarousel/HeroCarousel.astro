@@ -7,43 +7,48 @@ import Heading from '@/components/ui/Heading/Heading.astro'
 import Text from '@/components/ui/Text/Text.astro'
 import Button from '@/components/ui/Button/Button.astro'
 
+import styles from './HeroCarousel.module.scss'
+
 const heroes = (await getCollection('hero'))
   .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
 
 const hasMultiple = heroes.length > 1
 
 const { heightMobile = 100, heightTablet = 60, heightDesktop = 85 } = Astro.props;
-
 ---
 
 {heroes.length > 0 && (
-  <section class="hero-carousel" x-data="heroCarousel" x-init="init()">
-    <div class={`swiper hero-swiper ${!hasMultiple ? 'hero-swiper--single' : ''}`}>
+  <section class={styles.heroCarousel} x-data="heroCarousel" x-init="init()">
+    <div
+      class={`swiper hero-swiper ${styles.heroSwiper} ${
+        !hasMultiple ? styles.heroSwiperSingle : ''
+      }`}
+    >
       <div class="swiper-wrapper">
 
         {heroes.map((hero, index) => (
           <div class="swiper-slide">
             <section
-              class={`hero hero--align-${hero.data.align}`}
+              class={`${styles.hero} ${styles[`heroAlign${hero.data.align.charAt(0).toUpperCase() + hero.data.align.slice(1)}`]}`}
               style={`
-                    --carousel-height-mobile: ${heightMobile}vh;
-                    --carousel-height-tablet: ${heightTablet}vh;
-                    --carousel-height-desktop: ${heightDesktop}vh;
-                  `}
+                --carousel-height-mobile: ${heightMobile}vh;
+                --carousel-height-tablet: ${heightTablet}vh;
+                --carousel-height-desktop: ${heightDesktop}vh;
+              `}
             >
-              <div class="hero-media">
+              <div class={styles.heroMedia}>
                 <Image
                   alt={hero.data.image.alt}
                   fallbackSrc={hero.data.image.fallbackSrc}
                   sources={hero.data.image.sources}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   decoding="async"
-                  class="hero-image"
+                  class={styles.heroImage}
                 />
               </div>
 
               <Container size="lg">
-                <div class="hero-content">
+                <div class={styles.heroContent}>
                   {hero.data.title && (
                     <Heading level="h1">
                       {hero.data.title}
@@ -51,17 +56,17 @@ const { heightMobile = 100, heightTablet = 60, heightDesktop = 85 } = Astro.prop
                   )}
 
                   {hero.data.description && (
-                    <Text size="lg" class="hero-description">
+                    <Text size="lg" class={styles.heroDescription}>
                       {hero.data.description}
                     </Text>
                   )}
 
                   {hero.data.buttons && (
-                    <div class="hero-actions">
+                    <div class={styles.heroActions}>
                       {hero.data.buttons.map((btn) => (
                         <Button
                           href={btn.href}
-                          variant={btn.variant || 'primary'}
+                          variant="primary"
                         >
                           {btn.label}
                         </Button>
@@ -79,19 +84,34 @@ const { heightMobile = 100, heightTablet = 60, heightDesktop = 85 } = Astro.prop
       {/* Arrows */}
       {hasMultiple && (
         <>
-          <button class="custom-prev" aria-label="Anterior">
-            <span class="iconify" data-icon="mdi:chevron-left" style="font-size: 32px; color: #b30000;"></span>
+          <button
+            class={`${styles.customPrev} custom-prev`}
+            aria-label="Anterior"
+          >
+            <span
+              class="iconify"
+              data-icon="mdi:chevron-left"
+              style="font-size: 32px;"
+            ></span>
           </button>
-          <button class="custom-next" aria-label="Próximo">
-            <span class="iconify" data-icon="mdi:chevron-right" style="font-size: 32px; color: #b30000;"></span>
+
+          <button
+            class={`${styles.customNext} custom-next`}
+            aria-label="Próximo"
+          >
+            <span
+              class="iconify"
+              data-icon="mdi:chevron-right"
+              style="font-size: 32px;"
+            ></span>
           </button>
         </>
       )}
 
       {/* Dots */}
-      {hasMultiple && <div class="swiper-pagination"></div>}
+      {hasMultiple && (
+        <div class="swiper-pagination"></div>
+      )}
     </div>
   </section>
 )}
-
-

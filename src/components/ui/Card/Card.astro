@@ -1,4 +1,6 @@
 ---
+import styles from './Card.module.scss'
+
 export interface Props {
   image: {
     alt: string
@@ -33,21 +35,23 @@ const Wrapper = clickable && href ? 'a' : 'div'
 
 <Wrapper
   href={clickable ? href : undefined}
-  class={`card ${clickable ? 'card--clickable' : ''}`}
+  class={[
+    styles.card,
+    clickable ? styles['card--clickable'] : ''
+  ].join(' ')}
 >
-  <div class="card-image">
+  <div class={styles.card__image}>
     <Image
       alt={image.alt}
       fallbackSrc={image.fallbackSrc}
       sources={image.sources}
-      coverage='cover'
+      coverage="cover"
     />
   </div>
 
-  <div class="card-content">
-    <h3 class="card-title">{title}</h3>
-    <p class="card-description">{limitedDescription}</p>
+  <div class={styles.card__content}>
+    <h3 class={styles.card__title}>{title}</h3>
+    <p class={styles.card__description}>{limitedDescription}</p>
     <Button>Saiba Mais</Button>
   </div>
 </Wrapper>
-

@@ -1,4 +1,6 @@
 ---
+import styles from './Section.module.scss'
+
 export interface Props {
   as?: keyof HTMLElementTagNameMap
   size?: "sm" | "md" | "lg" | "xl"
@@ -21,9 +23,9 @@ const Tag = as
 <Tag
   id={id}
   class={[
-    "section",
-    `section--${size}`,
-    `section--bg-${background}`,
+    styles.section,
+    styles[`section--${size}`],
+    styles[`section--bg-${background}`],
     className
   ].join(" ")}
 >

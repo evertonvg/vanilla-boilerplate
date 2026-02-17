@@ -1,11 +1,12 @@
 @use '@/styles/base/tokens' as *;
+
 .card {
   display: flex;
   flex-direction: column;
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   text-decoration: none;
   color: inherit;
@@ -15,11 +16,15 @@
 
     &:hover {
       transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    &:hover .card__image img {
+      transform: scale(1.05);
     }
   }
 
-  &-image {
+  &__image {
     height: 220px;
     width: 100%;
     overflow: hidden;
@@ -32,11 +37,7 @@
     }
   }
 
-  &--clickable:hover &-image img {
-    transform: scale(1.05);
-  }
-
-  &-content {
+  &__content {
     padding: 1.25rem;
     display: flex;
     flex: 1;
@@ -45,13 +46,13 @@
     height: 100%;
   }
 
-  &-title {
+  &__title {
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
   }
 
-  &-description {
+  &__description {
     font-size: 0.95rem;
     color: #666;
     margin-bottom: 8px;

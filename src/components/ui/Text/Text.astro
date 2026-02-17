@@ -1,28 +1,38 @@
 ---
+import styles from './Text.module.scss'
+
 export interface Props {
-    as?: keyof HTMLElementTagNameMap;
-    size?: "xs" | "sm" | "md" | "lg" | "xl";
-    weight?: "light" | "regular" | "medium" | "bold";
-    color?: "base" | "muted" | "inverse" | "primary" | "danger";
-    align?: "left" | "center" | "right";
-    highlight?: boolean;
-    class?: string;
+  as?: keyof HTMLElementTagNameMap;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  weight?: "light" | "regular" | "medium" | "bold";
+  color?: "base" | "muted" | "inverse" | "primary" | "danger";
+  align?: "left" | "center" | "right";
+  highlight?: boolean;
+  class?: string;
 }
 
 const {
-    as = "p",
-    size = "md",
-    weight = "regular",
-    color = "base",
-    align = "left",
-    highlight = false,
-    class: className = "",
+  as = "p",
+  size = "md",
+  weight = "regular",
+  color = "base",
+  align = "left",
+  highlight = false,
+  class: className = "",
 } = Astro.props;
 ---
 
 <component
-    is={as}
-    class={`text text--${size} text--${weight} text--${color} text--align-${align} ${highlight ? "text--highlight" : ""} ${className}`}
+  is={as}
+  class={[
+    styles.text,
+    styles[size],
+    styles[weight],
+    styles[color],
+    styles[`align-${align}`],
+    highlight ? styles.highlight : "",
+    className,
+  ].join(" ")}
 >
-    <slot />
+  <slot />
 </component>

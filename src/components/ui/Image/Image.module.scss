@@ -1,0 +1,32 @@
+.image {
+  display: block;
+  max-width: 100%;
+}
+
+.picture {
+  width: 100%;
+  display: block;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cover {
+  height: 100%;
+  object-fit: cover;
+}
+
+.contain {
+  height: 100%;
+  object-fit: contain;
+}
+
+.caption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #666;
+  text-align: center;
+}

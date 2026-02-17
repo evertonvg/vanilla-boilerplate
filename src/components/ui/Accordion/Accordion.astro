@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
+import styles from './Accordion.module.scss'
 
 const faqs = await getCollection('faq')
 
@@ -7,31 +8,31 @@ const sorted = faqs
   .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
 ---
 
-<section class="accordion" x-data>
+<section class={styles.accordion} x-data>
   {sorted.map(async (item) => {
     const { Content } = await item.render()
 
     return (
       <div
-        class="accordion-item"
+        class={styles.item}
         x-data="{ open: false }"
-        :class="{ 'is-open': open }"
+        :class="{ ['${styles.isOpen}']: open }"
       >
         <button
-          class="accordion-header"
+          class={styles.header}
           @click="open = !open"
           :aria-expanded="open"
         >
           <span>{item.data.question}</span>
-          <span class="accordion-icon">+</span>
+          <span class={styles.icon}>+</span>
         </button>
 
         <div
-          class="accordion-content"
+          class={styles.content}
           x-show="open"
           x-collapse
         >
-          <div class="accordion-body">
+          <div class={styles.body}>
             <Content />
           </div>
         </div>

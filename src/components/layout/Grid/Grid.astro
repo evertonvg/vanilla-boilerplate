@@ -1,4 +1,6 @@
 ---
+import styles from './Grid.module.scss'
+
 export interface Props {
   gap?: string
 }
@@ -6,6 +8,6 @@ export interface Props {
 const { gap = '1.5rem' } = Astro.props
 ---
 
-<div class="grid" style={`--grid-gap: ${gap}`}>
+<div class={styles.grid} style={`--grid-gap: ${gap}`}>
   <slot />
 </div>

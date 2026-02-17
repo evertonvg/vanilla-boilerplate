@@ -1,7 +1,9 @@
 ---
+import styles from './WhatsappFloat.module.scss'
+
 export interface Props {
-  phone: string;          // Ex: 5551999999999
-  side?: 'left' | 'right' // default: right
+  phone: string
+  side?: 'left' | 'right'
 }
 
 const {
@@ -14,13 +16,13 @@ const whatsappUrl = `https://wa.me/${phone}`
 
 <a
   href={whatsappUrl}
-  class={`whatsapp-float whatsapp-float--${side}`}
+  class={[styles.whatsappFloat, styles[`whatsappFloat--${side}`]].join(' ')}
   target="_blank"
   rel="noopener noreferrer"
   aria-label="Falar no WhatsApp"
 >
   <span
-    class="iconify whatsapp-float__icon"
+    class={["iconify", styles.whatsappFloat__icon].join(" ")}
     data-icon="ph:whatsapp-logo-fill"
   ></span>
 </a>

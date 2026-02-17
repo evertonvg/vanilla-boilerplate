@@ -1,7 +1,9 @@
 ---
 import Button from '@/components/ui/Button/Button.astro'
 import UiImage from '@/components/ui/Image/Image.astro'
+import Container from '../Container/Container.astro'
 import { getCollection } from 'astro:content'
+import styles from './Header.module.scss'
 
 export interface Props {
   sticky?: 'static' | 'fixed' | 'smart'
@@ -9,7 +11,6 @@ export interface Props {
 
 const { sticky = 'static' } = Astro.props
 
-// Load menu from Content Collection
 const menuItems = (await getCollection('menu'))
   .map((item) => item.data)
   .sort((a, b) => a.order - b.order)
@@ -26,14 +27,18 @@ const ctaItem = menuItems.find((item) => item.isCTA)
 ---
 
 <header
-  class={['header', `header--sticky-${sticky}`].join(' ')}
+  class={[
+    styles.header,
+    styles[`sticky-${sticky}`]
+  ].join(' ')}
   x-data="header()"
   x-init="init()"
   @keydown.escape="close()"
 >
-  <div class="header__inner container container--lg">
-    <!-- Logo -->
-    <div class="header__logo">
+  <Container size="xxl">
+  <div class={`${styles.inner} container container--lg`}>
+    
+    <div class={styles.logo}>
       <a href="/" aria-label="Página inicial">
         <UiImage
           fallbackSrc="/logo.svg"
@@ -44,9 +49,8 @@ const ctaItem = menuItems.find((item) => item.isCTA)
       </a>
     </div>
 
-    <!-- Desktop Nav -->
-    <nav class="header__nav" aria-label="Menu principal">
-      <ul class="header__menu">
+    <nav class={styles.nav} aria-label="Menu principal">
+      <ul class={styles.menu}>
         {desktopItems.map((item) => {
           const isAnchor = item.href?.startsWith('#')
 
@@ -54,7 +58,7 @@ const ctaItem = menuItems.find((item) => item.isCTA)
             <li>
               <a
                 href={item.href}
-                class="header__link"
+                class={styles.link}
                 target={item.target}
                 rel={item.rel}
                 {...(isAnchor
@@ -67,12 +71,11 @@ const ctaItem = menuItems.find((item) => item.isCTA)
           )
         })}
 
-        <!-- CTA (desktop only) -->
-       {ctaItem && (() => {
+        {ctaItem && (() => {
           const isAnchor = ctaItem.href?.startsWith('#')
 
           return (
-            <li class="header__cta header__cta--desktop">
+            <li class={`${styles.cta} ${styles.ctaDesktop}`}>
               <Button
                 variant="secondary"
                 size="sm"
@@ -90,9 +93,8 @@ const ctaItem = menuItems.find((item) => item.isCTA)
       </ul>
     </nav>
 
-    <!-- Mobile Toggle -->
     <button
-      class="header__toggle"
+      class={styles.toggle}
       :class="{ 'is-active': open }"
       @click="toggle()"
       aria-label="Abrir menu"
@@ -103,18 +105,18 @@ const ctaItem = menuItems.find((item) => item.isCTA)
       <span></span>
     </button>
   </div>
+  </Container>
 
-  <!-- Mobile Drawer -->
-  <div class="header__mobile" :class="{ 'is-open': open }">
+  <div class={styles.mobile} :class="{ 'is-open': open }">
     <nav aria-label="Menu mobile">
-      <ul class="header__mobile-menu">
+      <ul class={styles.mobileMenu}>
         {mobileItems.map((item) => {
           const isAnchor = item.href?.startsWith('#')
 
           return (
             <li>
               <a
-                class="header__mobile-menu__item"
+                class={styles.mobileItem}
                 href={item.href}
                 target={item.target}
                 rel={item.rel}
@@ -128,26 +130,18 @@ const ctaItem = menuItems.find((item) => item.isCTA)
           )
         })}
 
-        <!-- CTA (mobile last) -->
-        {ctaItem && (() => {
-          const isAnchor = ctaItem.href?.startsWith('#')
-
-          return (
-            <li class="header__cta header__cta--mobile">
-              <Button
-                variant="primary"
-                size="sm"
-                href={ctaItem.href}
-                target={ctaItem.target}
-                {...(isAnchor
-                  ? { '@click.prevent': `scrollToAnchor('${ctaItem.href}')` }
-                  : { '@click': 'close()' })}
-              >
-                {ctaItem.label}
-              </Button>
-            </li>
-          )
-        })()}
+        {ctaItem && (
+          <li class={`${styles.cta} ${styles.ctaMobile}`}>
+            <Button
+              variant="primary"
+              size="sm"
+              href={ctaItem.href}
+              target={ctaItem.target}
+            >
+              {ctaItem.label}
+            </Button>
+          </li>
+        )}
       </ul>
     </nav>
   </div>

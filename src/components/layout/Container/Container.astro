@@ -1,14 +1,20 @@
 ---
+import styles from './Container.module.scss'
+
 export interface Props {
-    size?: "sm" | "md" | "lg" | "xl" | "xxl" | "fluid" | "narrow" | "wide";
-    as?: keyof HTMLElementTagNameMap;
+  size?: "sm" | "md" | "lg" | "xl" | "xxl" | "fluid" | "narrow" | "wide";
+  as?: keyof HTMLElementTagNameMap;
 }
 
 const { size = "lg", as = "div" } = Astro.props;
 
 const Tag = as;
+
+const sizeClass = size && size !== "lg"
+  ? styles[`container--${size}`]
+  : undefined;
 ---
 
-<Tag class={["container", size ? `container--${size}` : ""].join(" ")}>
-    <slot />
+<Tag class:list={[styles.container, sizeClass]}>
+  <slot />
 </Tag>

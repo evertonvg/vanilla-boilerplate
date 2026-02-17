@@ -2,28 +2,28 @@
 @use './base/reset';
 
 /* Layout */
-@use '../components/layout/Container/container';
-@use '../components/layout/Section/_section';
-@use '../components/layout/header/header';
-@use '../components/layout/footer/footer';
-@use '../components/layout/CookieConsent/_cookie-consent';
-@use '../components/layout/Toast/_toast';
-@use '../components/layout/Grid/_grid';
-@use '../components/layout/WhatsappFloat/_whatsappfloat';
-@use '../components/layout/HeroCarousel/_herocarousel';
+// @use '../components/layout/Container/container';
+// @use '../components/layout/Section/_section';
+// @use '../components/layout/header/header';
+// @use '../components/layout/footer/footer';
+// @use '../components/layout/CookieConsent/_cookie-consent';
+// @use '../components/layout/Toast/_toast';
+// @use '../components/layout/Grid/_grid';
+// @use '../components/layout/WhatsappFloat/_whatsappfloat';
+// @use '../components/layout/HeroCarousel/_herocarousel';
 
 /* Components */
-@use './components/buttons';
+// @use './components/buttons';
 // @use './components/swiper';
 
 
 /* Utilities */
-@use './utilities/helpers';
+// @use './utilities/helpers';
 
 // ui components 
-@use '../components/ui/Button/button';
-@use '../components/ui/Text/text';
-@use '../components/ui/Heading/heading';
-@use '../components/ui/Accordion/accordion';
-@use '../components/ui/Card/_card';
+// @use '../components/ui/Button/button';
+// @use '../components/ui/Text/text';
+// @use '../components/ui/Heading/heading';
+// @use '../components/ui/Accordion/accordion';
+// @use '../components/ui/Card/_card';
 
