@@ -33,81 +33,70 @@ const ctaItem = menuItems.find((item) => item.isCTA)
   ].join(' ')}
   x-data="header()"
   x-init="init()"
-  @keydown.escape="close()"
+  @keydown.escape.window="close()"
+  :data-visible="isVisible"
 >
   <Container size="xxl">
-  <div class={`${styles.inner} container container--lg`}>
-    
-    <div class={styles.logo}>
-      <a href="/" aria-label="Página inicial">
-        <UiImage
-          fallbackSrc="/logo.svg"
-          alt="Nome da Empresa"
-          width={120}
-          height={40}
-        />
-      </a>
+    <div class={styles.inner}>
+
+      <!-- Logo -->
+      <div class={styles.logo}>
+        <a href="/" aria-label="Página inicial">
+          <UiImage
+            fallbackSrc="/logo.svg"
+            alt="Nome da Empresa"
+            width={120}
+            height={40}
+          />
+        </a>
+      </div>
+
+      <!-- Desktop -->
+      <nav class={styles.nav} aria-label="Menu principal">
+        <ul class={styles.menu}>
+          {desktopItems.map((item) => {
+            const isAnchor = item.href?.startsWith('#')
+
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  class={styles.link}
+                  target={item.target}
+                  rel={item.rel}
+                  {...(isAnchor
+                    ? { '@click.prevent': `scrollToAnchor('${item.href}')` }
+                    : {})}
+                >
+                  {item.label}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
+
+      <!-- Toggle -->
+      <button
+        class={styles.toggle}
+        @click="toggle()"
+        :data-open="open"
+        aria-label="Abrir menu"
+        :aria-expanded="open.toString()"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
     </div>
-
-    <nav class={styles.nav} aria-label="Menu principal">
-      <ul class={styles.menu}>
-        {desktopItems.map((item) => {
-          const isAnchor = item.href?.startsWith('#')
-
-          return (
-            <li>
-              <a
-                href={item.href}
-                class={styles.link}
-                target={item.target}
-                rel={item.rel}
-                {...(isAnchor
-                  ? { '@click.prevent': `scrollToAnchor('${item.href}')` }
-                  : {})}
-              >
-                {item.label}
-              </a>
-            </li>
-          )
-        })}
-
-        {ctaItem && (() => {
-          const isAnchor = ctaItem.href?.startsWith('#')
-
-          return (
-            <li class={`${styles.cta} ${styles.ctaDesktop}`}>
-              <Button
-                variant="secondary"
-                size="sm"
-                href={ctaItem.href}
-                target={ctaItem.target}
-                {...(isAnchor
-                  ? { '@click.prevent': `scrollToAnchor('${ctaItem.href}')` }
-                  : {})}
-              >
-                {ctaItem.label}
-              </Button>
-            </li>
-          )
-        })()}
-      </ul>
-    </nav>
-
-    <button
-      class={styles.toggle}
-      :class="{ 'is-active': open }"
-      @click="toggle()"
-      aria-label="Abrir menu"
-      :aria-expanded="open.toString()"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
   </Container>
 
-  <div class={styles.mobile} :class="{ 'is-open': open }">
+  <!-- Mobile Drawer -->
+  <div
+    class={styles.mobile}
+    :data-open="open"
+  >
     <nav aria-label="Menu mobile">
       <ul class={styles.mobileMenu}>
         {mobileItems.map((item) => {
@@ -129,19 +118,6 @@ const ctaItem = menuItems.find((item) => item.isCTA)
             </li>
           )
         })}
-
-        {ctaItem && (
-          <li class={`${styles.cta} ${styles.ctaMobile}`}>
-            <Button
-              variant="primary"
-              size="sm"
-              href={ctaItem.href}
-              target={ctaItem.target}
-            >
-              {ctaItem.label}
-            </Button>
-          </li>
-        )}
       </ul>
     </nav>
   </div>

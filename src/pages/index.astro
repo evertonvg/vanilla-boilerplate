@@ -20,23 +20,25 @@ const sortedCards = cards.sort(
   title="Minha Landing Page"
   description="Landing page focada em conversão e SEO"
 >
-  <HeroCarousel />
-
-  
-  <Section size="xl">
-	  <Container size="xl">
-		  <Grid>
-			  {sortedCards.map((card) => (
-				  <Card
-				  title={card.data.title}
-				  description={card.body}
-				  image={card.data.image}
-				  clickable={card.data.clickable}
-				  href={card.data.href}
-				  />
-				))}
-		</Grid>
-	</Container>
-</Section>
-<Accordion />
+  	<HeroCarousel />
+  	<Section size="xl">
+		<Container size="xl">
+			<Grid>
+				{sortedCards.map((card) => (
+					<Card
+					title={card.data.title}
+					description={card.body}
+					image={card.data.image}
+					clickable={card.data.clickable}
+					href={card.data.href}
+					/>
+					))}
+			</Grid>
+		</Container>
+	</Section>
+	<Section size="xl">
+		<Container size="xl">
+			<Accordion />
+		</Container>
+	</Section>
 </BaseLayout>

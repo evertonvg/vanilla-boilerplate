@@ -13,6 +13,10 @@
       "@/*": [
         "src/*"
       ]
-    }
+    },
+    // ensure Astro’s client directives (client:load, etc.) are typed
+    "types": [
+      "astro/client"
+    ]
   }
 }
